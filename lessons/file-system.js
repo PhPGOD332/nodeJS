@@ -90,9 +90,10 @@ const removeFileAsync = async (path) => {
 
 //Задачка
 //
-const text = process.env.TEXT || '';
+const text = process.env.TEXT || ''
 
 writeFileAsync(path.resolve(__dirname, 'text.txt'), text)
     .then(() => readFileAsync(path.resolve(__dirname, 'text.txt')))
     .then(data => data.split(' ').length)
     .then(count => writeFileAsync(path.resolve(__dirname, 'count.txt'), `Кол-во слов ${count}`))
+    .then(() => removeFileAsync(path.resolve(__dirname, 'text.txt')))
